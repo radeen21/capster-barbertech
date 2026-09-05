@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class CameraFramePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    const double cornerLength = 30; // panjang garis pojok
-    const double sideLength = 20; // panjang garis tengah sisi
+    const double cornerLength = 30; 
+    const double sideLength = 20; 
     const double strokeWidth = 3;
 
     final Paint yellowPaint = Paint()
@@ -19,8 +19,6 @@ class CameraFramePainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
 
-    // === 4 POJOK FRAME ===
-    // Atas kiri
     canvas.drawLine(const Offset(0, 0), const Offset(cornerLength, 0), whitePaint);
     canvas.drawLine(const Offset(0, 0), const Offset(0, cornerLength), yellowPaint);
 
@@ -65,8 +63,6 @@ class CameraFramePainter extends CustomPainter {
       yellowPaint,
     );
 
-    // === 4 SISI TENGAH FRAME ===
-    // Tengah atas
     canvas.drawLine(
       Offset(size.width / 2 - sideLength, 0),
       Offset(size.width / 2 + sideLength, 0),

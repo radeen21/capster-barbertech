@@ -123,10 +123,10 @@ class _OnBoardingScreenState extends State<OnboardingPage> {
 
   void _handleNextButton() {
     if (_currentPage == _slides.length - 1) {
-      // HALAMAN TERAKHIR → Sign In
+      
       Navigator.pushReplacementNamed(context, "/login");
     } else {
-      // PINDAH SLIDE BERIKUTNYA
+      
       _pageController.nextPage(
         duration: Duration(milliseconds: 400),
         curve: Curves.easeOut,

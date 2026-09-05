@@ -7,9 +7,6 @@ class AuthSessionLocalDataSource {
   static const _keyRole = "role";
   static const _keyIsLoggedIn = "is_logged_in";
 
-  /// =====================
-  /// SAVE SESSION
-  /// =====================
   Future<void> saveSession({
     required String userId,
     required String sessionToken,
@@ -25,9 +22,6 @@ class AuthSessionLocalDataSource {
     await prefs.setBool(_keyIsLoggedIn, true);
   }
 
-  /// =====================
-  /// GETTERS
-  /// =====================
   String? getUserId() {
     return SharedPreferences.getInstance()
         .then((prefs) => prefs.getString(_keyUserId))
@@ -52,17 +46,11 @@ class AuthSessionLocalDataSource {
         as String?;
   }
 
-  /// =====================
-  /// LOGIN STATUS
-  /// =====================
   Future<bool> isLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(_keyIsLoggedIn) ?? false;
   }
 
-  /// =====================
-  /// CLEAR SESSION
-  /// =====================
   Future<void> clear() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();

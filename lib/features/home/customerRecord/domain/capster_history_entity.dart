@@ -26,18 +26,13 @@ class CapsterHistoryEntity {
     this.fullHaircutUrl,
   });
 
-  /// ======================
-  /// STATUS
-  /// ======================
+
   bool get isDone => status == ServiceStatus.done;
   bool get isProcessing => status == ServiceStatus.processing;
 
-  /// ======================
-  /// DATE GROUPING
-  /// ======================
   DateTime get dateOnly {
     if (lastServedDate == null) {
-      return DateTime(1970); // fallback aman
+      return DateTime(1970); 
     }
     final d = lastServedDate!;
     return DateTime(d.year, d.month, d.day);
@@ -51,7 +46,6 @@ class CapsterHistoryEntity {
     ).format(lastServedDate!);
   }
 
-  /// 🕒 ITEM: 14.30
   String get formattedItemDate =>
       DateFormat('HH.mm', 'id_ID').format(lastServedDate!);
 }

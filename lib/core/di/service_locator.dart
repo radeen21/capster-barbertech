@@ -41,16 +41,11 @@ import 'package:get_it/get_it.dart';
 final locator = GetIt.instance;
 
 void setupLocator() {
-  // =====================
-  // CORE
-  // =====================
+
   if (!locator.isRegistered<Dio>()) {
     locator.registerLazySingleton<Dio>(() => DioClient.create());
   }
 
-  // =====================
-  // AUTH SESSION (🔥 FIXED)
-  // =====================
   if (!locator.isRegistered<AuthSessionRepositoryImpl>()) {
     locator.registerLazySingleton<AuthSessionRepositoryImpl>(
       () => AuthSessionRepositoryImpl(),
@@ -63,9 +58,6 @@ void setupLocator() {
     );
   }
 
-  // =====================
-  // AUTH DATA
-  // =====================
   if (!locator.isRegistered<AuthRemoteDataSource>()) {
     locator.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSourceImpl(locator()),
@@ -87,9 +79,6 @@ void setupLocator() {
     );
   }
 
-  // =====================
-  // AUTH USECASES
-  // =====================
   if (!locator.isRegistered<LoginUseCase>()) {
     locator.registerLazySingleton<LoginUseCase>(
       () => LoginUseCase(
@@ -113,9 +102,6 @@ void setupLocator() {
     () => LogoutController(locator<LogoutUseCase>()),
   );
 
-  // =====================
-  // PHOTO FEATURE
-  // =====================
   if (!locator.isRegistered<PhotoRemoteDataSource>()) {
     locator.registerLazySingleton<PhotoRemoteDataSource>(
       () => PhotoRemoteDataSource(locator()),
@@ -137,88 +123,6 @@ void setupLocator() {
   locator.registerFactory<TakePhotoController>(
     () => TakePhotoController(useCase: locator(), sessionRepository: locator()),
   );
-
-  // // =====================
-  // // REGISTER FEATURE
-  // // =====================
-  // if (!locator.isRegistered<RegisterRemoteDataSource>()) {
-  //   locator.registerLazySingleton<RegisterRemoteDataSource>(
-  //     () => RegisterRemoteDataSource(),
-  //   );
-  // }
-
-  // if (!locator.isRegistered<RegisterRepository>()) {
-  //   locator.registerLazySingleton<RegisterRepository>(
-  //     () => RegisterRepositoryImpl(locator()),
-  //   );
-  // }
-
-  // if (!locator.isRegistered<RegisterUseCase>()) {
-  //   locator.registerLazySingleton<RegisterUseCase>(
-  //     () => RegisterUseCase(locator()),
-  //   );
-  // }
-
-  // locator.registerFactory<RegisterController>(
-  //   () => RegisterController(registerUseCase: locator()),
-  // );
-
-  // // =====================
-  // // POINTS FEATURE
-  // // =====================
-  // if (!locator.isRegistered<PointsRemoteDataSource>()) {
-  //   locator.registerLazySingleton<PointsRemoteDataSource>(
-  //     () => PointsRemoteDataSource(locator()),
-  //   );
-  // }
-
-  // if (!locator.isRegistered<PointsRepository>()) {
-  //   locator.registerLazySingleton<PointsRepository>(
-  //     () => PointsRepositoryImpl(locator()),
-  //   );
-  // }
-
-  // if (!locator.isRegistered<GetPointsUseCase>()) {
-  //   locator.registerLazySingleton<GetPointsUseCase>(
-  //     () => GetPointsUseCase(locator()),
-  //   );
-  // }
-
-  // locator.registerFactory<PointsController>(() => PointsController(locator()));
-
-  // =====================
-  // CAPSTER FEATURE ✅ FINAL
-  // =====================
-
-  // locator.registerLazySingleton<CapsterRemoteDataSource>(
-  //   () => CapsterRemoteDataSource(locator()),
-  // );
-
-  // locator.registerLazySingleton<CapsterRepository>(
-  //   () => CapsterRepositoryImpl(locator()),
-  // );
-
-  // locator.registerLazySingleton<GetCapstersUseCase>(
-  //   () => GetCapstersUseCase(locator()),
-  // );
-
-  // locator.registerFactory<CapsterController>(
-  //   () => CapsterController(locator()),
-  // );
-
-  // locator.registerFactory(() => TakeAddOnPictureController(locator()));
-
-  // locator.registerLazySingleton(() => TakeAndGenerateAddOnUseCase(locator()));
-
-  // locator.registerLazySingleton<AddOnPhotoRepository>(
-  //   () => AddOnPhotoRepositoryImpl(locator()),
-  // );
-
-  // locator.registerLazySingleton(() => AddOnPhotoApi(locator<Dio>()));
-
-  // =====================
-  // HISTORY FEATURE 🕘
-  // =====================
 
   if (!locator.isRegistered<HistoryRemoteDataSource>()) {
     locator.registerLazySingleton<HistoryRemoteDataSource>(
@@ -242,9 +146,6 @@ void setupLocator() {
     () => HistoryController(locator<GetHistoriesUseCase>()),
   );
 
-  // =====================
-  // CAPSTER HISTORY
-  // =====================
   locator.registerLazySingleton(
     () => CapsterHistoryRemoteDataSource(locator()),
   );
@@ -257,7 +158,6 @@ void setupLocator() {
 
   locator.registerFactory(() => CapsterHistoryController(locator()));
 
-  // Start Service
   locator.registerLazySingleton(
     () => StartServiceRemoteDataSourceImpl(locator<Dio>()),
   );
@@ -275,68 +175,22 @@ void setupLocator() {
     () => StartServiceController(locator<StartServiceUseCase>()),
   );
 
-  // // VOUCHER
-  // locator.registerLazySingleton<VoucherRemoteDataSource>(
-  //   () => VoucherRemoteDataSourceImpl(locator<Dio>()),
-  // );
-
-  // locator.registerLazySingleton<VoucherRepository>(
-  //   () => VoucherRepositoryImpl(locator()),
-  // );
-
-  // locator.registerLazySingleton(() => GetVouchersUseCase(locator()));
-
-  // locator.registerFactory(() => VoucherController(locator()));
-
-  // locator.registerLazySingleton<RedeemVoucherUseCase>(
-  //   () => RedeemVoucherUseCaseImpl(locator()),
-  // );
-
-  // locator.registerLazySingleton(() => QrRemoteDataSource(locator<Dio>()));
-  // locator.registerLazySingleton<QrRepository>(
-  //   () => QrRepositoryImpl(locator()),
-  // );
-  // locator.registerLazySingleton(() => ScanQrUseCase(locator()));
-  // locator.registerFactory(() => ScanController(locator()));
-
-  // // REVIEW FEATURE
-  // locator.registerLazySingleton(() => ReviewRemoteDataSource(locator<Dio>()));
-
-  // locator.registerLazySingleton<ReviewRepository>(
-  //   () => ReviewRepositoryImpl(locator()),
-  // );
-
-  // locator.registerLazySingleton(() => SubmitReviewUseCase(locator()));
-
-  // locator.registerFactory(() => ReviewController(locator()));
-
-  // =====================
-  // FINISH SERVICE FEATURE ✅
-  // =====================
-
-  // remote
   locator.registerLazySingleton<FinishServiceRemoteDataSource>(
     () => FinishServiceRemoteDataSource(locator<Dio>()),
   );
 
-  // repository
   locator.registerLazySingleton<FinishServiceRepository>(
     () => FinishServiceRepositoryImpl(locator<FinishServiceRemoteDataSource>()),
   );
 
-  // usecase
   locator.registerLazySingleton<FinishServiceUseCase>(
     () => FinishServiceUseCase(locator<FinishServiceRepository>()),
   );
 
-  // controller (⚠️ factory, bukan singleton)
   locator.registerFactory<FinishServiceController>(
     () => FinishServiceController(locator<FinishServiceUseCase>()),
   );
 
-  // =====================
-  // UPLOAD PHOTO USECASE (REUSED)
-  // =====================
   locator.registerLazySingleton<UploadPhotoUseCase>(
     () => UploadPhotoUseCase(locator<PhotoRepository>()),
   );

@@ -9,7 +9,6 @@ class AddOnDialog extends StatefulWidget {
   final String serviceId;
   final Uint8List baseImage;
 
-  /// ⬇️ FIX: callback punya 2 parameter
   final Function(
     Uint8List image,
     List<Map<String, dynamic>> selectedAddOns,
@@ -44,9 +43,6 @@ class _AddOnDialogState extends State<AddOnDialog> {
     _fetchAddOns();
   }
 
-  // =====================
-  // FETCH ADD ONS
-  // =====================
   Future<void> _fetchAddOns() async {
     try {
       final dio = DioClient.create();
@@ -61,9 +57,6 @@ class _AddOnDialogState extends State<AddOnDialog> {
     }
   }
 
-  // =====================
-  // GENERATE ADD ON
-  // =====================
   Future<void> _submitAddOn() async {
     if (_selectedAddOns.isEmpty) return;
 
@@ -107,9 +100,6 @@ class _AddOnDialogState extends State<AddOnDialog> {
     return payload;
   }
 
-  // =====================
-  // UI
-  // =====================
   @override
   Widget build(BuildContext context) {
     return Dialog(

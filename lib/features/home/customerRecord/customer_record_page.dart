@@ -62,7 +62,7 @@ class CustomerRecordPage extends StatelessWidget {
                   final items = grouped[date]!;
 
                   return [
-                    /// 📅 DATE HEADER
+                  
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 20, bottom: 12),
@@ -76,7 +76,7 @@ class CustomerRecordPage extends StatelessWidget {
                       ),
                     ),
 
-                    /// 🧾 CARDS
+                  
                     ...items.map(
                       (item) => Padding(
                         padding:

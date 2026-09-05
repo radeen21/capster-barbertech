@@ -10,28 +10,25 @@ class PhotoRemoteDataSource {
 
   void _logRequest(String method, String path, dynamic data) {
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    print("📤 [$method] ${dio.options.baseUrl}$path");
-    print("🧾 Headers: ${dio.options.headers}");
-    print("📦 Payload: $data");
+    print(" [$method] ${dio.options.baseUrl}$path");
+    print("Headers: ${dio.options.headers}");
+    print("Payload: $data");
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
   }
 
   void _logResponse(Response response) {
-    print("🟢 STATUS: ${response.statusCode}");
-    print("📥 RESPONSE: ${response.data}");
+    print("STATUS: ${response.statusCode}");
+    print("RESPONSE: ${response.data}");
   }
 
   void _logError(DioException e) {
-    print("🔴 ERROR REQUEST");
-    print("❌ STATUS: ${e.response?.statusCode}");
-    print("❌ MESSAGE: ${e.message}");
-    print("❌ RESPONSE DATA: ${e.response?.data}");
+    print("ERROR REQUEST");
+    print("STATUS: ${e.response?.statusCode}");
+    print("MESSAGE: ${e.message}");
+    print("RESPONSE DATA: ${e.response?.data}");
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
   }
 
-  // =========================
-  // 📤 UPLOAD PHOTO
-  // =========================
   Future<Map<String, dynamic>> uploadPhoto(File file) async {
     const path = "/photos";
 
@@ -73,12 +70,9 @@ class PhotoRemoteDataSource {
     }
   }
 
-  // =========================
-  // 🔍 ANALYZE PHOTO (FIXED)
-  // =========================
   Future<Map<String, dynamic>> analyzePhoto({
     required String photoId,
-    String? serviceId, // 👈 nullable
+    String? serviceId,
   }) async {
     const path = "/analyze-photo";
 
@@ -114,13 +108,10 @@ class PhotoRemoteDataSource {
         message = "Tidak dapat terhubung ke server";
       }
 
-      throw message; // 🔥 INI YANG BENAR
+      throw message;
     }
   }
 
-  // =========================
-  // 🎨 GENERATE IMAGE BY NAME
-  // =========================
   Future<Map<String, dynamic>> generateImageByName({
     required String photoId,
     required List<Map<String, dynamic>> recommendation,
@@ -141,9 +132,6 @@ class PhotoRemoteDataSource {
     }
   }
 
-  // =========================
-  // ➕ GENERATE IMAGE ADD-ON
-  // =========================
   Future<Map<String, dynamic>> generateImageAddOn({
     required String photoId,
     required Map<String, dynamic> addOn,
@@ -152,7 +140,7 @@ class PhotoRemoteDataSource {
 
     final payload = {
       "photo_id": photoId,
-      "addons": addOn, // ✅ LANGSUNG OBJECT
+      "addons": addOn,
     };
 
     print("🔥 FINAL PAYLOAD = $payload");
@@ -169,9 +157,6 @@ class PhotoRemoteDataSource {
     }
   }
 
-  // =========================
-  // 🖼 GET PHOTO BY ID
-  // =========================
   Future<Uint8List> getPhotoById(String photoId) async {
     final path = "/photos/$photoId";
 
@@ -194,9 +179,6 @@ class PhotoRemoteDataSource {
     }
   }
 
-  // =========================
-  // 🌐 GET PHOTO BY URL
-  // =========================
   Future<Uint8List> getPhotoByUrl(String url) async {
     final cleanUrl = url.startsWith("//")
         ? url.substring(2)

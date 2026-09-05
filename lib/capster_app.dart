@@ -9,7 +9,7 @@ class CapsterApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// 🔥 LOCK LANDSCAPE KHUSUS CAPSTER
+   
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
     ]);
@@ -17,30 +17,12 @@ class CapsterApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-
-      /// ⭐ ONBOARDING JADI ENTRY POINT
       initialRoute: "/onboarding",
 
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case "/onboarding":
             return MaterialPageRoute(builder: (_) => OnboardingPage());
-
-          // case "/login":
-          //   return MaterialPageRoute(
-          //     builder: (_) => LoginPage(loginUseCase: null,),
-          //   );
-
-          // case "/home":
-          //   final capsterName = settings.arguments as String;
-
-          //   return MaterialPageRoute(
-          //     builder: (_) => CapsterRootPage(
-          //       capsterName: capsterName,
-          //       takePhotoUseCase: locator<TakeAndAnalyzePhotoUseCase>(),
-          //       logoutUseCase: locator<LogoutUseCase>(),
-          //     ),
-          //   );
         }
         return null;
       },

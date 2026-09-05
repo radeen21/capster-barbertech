@@ -10,15 +10,13 @@ class FinishServiceRemoteDataSource {
     required String historyId,
     required String photoUrl,
   }) async {
-    debugPrint("➡️ PUT /histories/$historyId/finish");
 
-    final response = await dio.put( // ⬅️ GANTI POST → PUT
+    final response = await dio.put( 
       "/histories/$historyId/finish",
       data: {
         "photo_url": photoUrl,
       },
     );
 
-    debugPrint("✅ FINISH SERVICE RESPONSE = ${response.data}");
   }
 }

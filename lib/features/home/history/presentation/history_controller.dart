@@ -17,9 +17,9 @@ class HistoryController extends ChangeNotifier {
 
       histories = await getHistoriesUseCase();
 
-      debugPrint("✅ HISTORIES LOADED: ${histories.length}");
+      debugPrint("HISTORIES LOADED: ${histories.length}");
     } catch (e) {
-      debugPrint("❌ FETCH HISTORIES ERROR: $e");
+      debugPrint("FETCH HISTORIES ERROR: $e");
     } finally {
       isLoading = false;
       notifyListeners();

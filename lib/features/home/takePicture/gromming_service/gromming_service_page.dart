@@ -55,12 +55,9 @@ class _ServicesPageState extends State<GrommingServicesPage> {
               return GestureDetector(
                 onTap: () {
                   final session = locator<AuthSessionRepository>();
-                  final role = session.getRole(); // "user" | "capster"
-
-                  debugPrint("🧭 SERVICE TAP | ROLE = $role");
+                  final role = session.getRole(); 
 
                   if (role != "capster") {
-                    debugPrint("⛔ USER TIDAK BOLEH AKSES SERVICE");
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -70,8 +67,6 @@ class _ServicesPageState extends State<GrommingServicesPage> {
                     return;
                   }
                   
-
-                  // if (!service.isAllowPhoto) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -79,40 +74,7 @@ class _ServicesPageState extends State<GrommingServicesPage> {
                       ),
                     );
                     return;
-                  // }
-
-                  // if (_needBridging(service.name)) {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (_) => ServiceBridgingPage(
-                  //         service: service,
-                  //         onContinue: (extraData) {
-                  //           Navigator.push(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //               builder: (_) => TakeAddOnPicturePage(
-                  //                 service: service,
-                  //                 addOnPayload: extraData, 
-                  //               ),
-                  //             ),
-                  //           );
-                  //         },
-                  //       ),
-                  //     ),
-                  //   );
-                  //   return;
-                  // }
-
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (_) => TakePhotoPage(
-                  //       controller: locator<TakePhotoController>(),
-                  //       service: service,
-                  //     ),
-                  //   ),
-                  // );
+                  
                 },
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 16),

@@ -27,8 +27,6 @@ class GrommingServiceEntity {
       price: json['price'] as int,
       durationMinutes: json['duration_minutes'] as int,
       isRecommended: json['is_recommended'] == true,
-
-      // 🔥 INI KUNCI UTAMA
       hasAddons: json['has_addons'] == true,
 
       isAllowPhoto: json['is_allow_photo'] == true,

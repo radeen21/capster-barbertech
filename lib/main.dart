@@ -11,8 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-
-// 🔥 GANTI sesuai onboarding kamu
 import 'features/onboarding/onboarding_page.dart';
 
 Future<void> main() async {
@@ -26,29 +24,19 @@ Future<void> main() async {
 
   setupLocator();
 
-  // =====================
-  // 🔥 LOAD SESSION
-  // =====================
   final sessionRepo = locator<AuthSessionRepository>();
 
   if (sessionRepo is AuthSessionRepositoryImpl) {
     await sessionRepo.loadSession();
   }
 
-  debugPrint("🔐 SESSION TOKEN = ${sessionRepo.getSessionToken()}");
-
-  // =====================
-  // 🔔 INIT FCM
-  // =====================
   final fcmService = FcmService();
   await fcmService.requestPermission();
   await fcmService.getToken();
   fcmService.listenForegroundMessages();
   fcmService.listenTokenRefresh();
 
-  // =====================
-  // SCREEN ORIENTATION
-  // =====================
+  
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeRight,
   ]);
@@ -65,7 +53,6 @@ class MyApp extends StatelessWidget {
       title: "Capster Barbertech",
       debugShowCheckedModeBanner: false,
 
-      /// 🔥 START ONBOARDING
       initialRoute: "/onboarding",
 
       onGenerateRoute: (settings) {
@@ -85,15 +72,6 @@ class MyApp extends StatelessWidget {
               ),
             );
 
-            // case "/home":
-            // return MaterialPageRoute(
-            //   builder: (_) => HomePage(
-            //     userName: "User",
-            //     // pointsController: locator<PointsController>(),
-            //     // voucherController: locator<VoucherController>(),
-            //   ),
-            // );
-
           default:
             return MaterialPageRoute(
               builder: (_) => OnboardingPage(),
@@ -112,8 +90,6 @@ class FullScreenCastApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      /// ❗️JANGAN ADA ROUTE DI SINI
       home: Scaffold(
         backgroundColor: Colors.black,
         body: Center(

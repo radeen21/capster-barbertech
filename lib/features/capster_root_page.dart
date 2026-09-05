@@ -37,13 +37,12 @@ class _CapsterRootPageState extends State<CapsterRootPage> {
     _historyController = locator<CapsterHistoryController>();
     _historyController.fetch();
 
-    debugPrint("📦 CapsterHistoryController initialized in RootPage");
   }
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false, // ⛔ blok back android
+      canPop: false,
       onPopInvoked: (didPop) {
         if (_currentIndex != 0) {
           // kalau lagi bukan di tab home → balik ke home dulu
@@ -55,13 +54,12 @@ class _CapsterRootPageState extends State<CapsterRootPage> {
         body: IndexedStack(
           index: _currentIndex,
           children: [
-            /// 🏠 HOME
+           
             HomeCapsterPage(
               user: widget.userEntity,
               takePhotoUseCase: widget.takePhotoUseCase,
             ),
 
-            /// 📒 CUSTOMER RECORD
             CustomerRecordPage(
               histories: _historyController.histories,
               onRefresh: () async {
@@ -69,7 +67,6 @@ class _CapsterRootPageState extends State<CapsterRootPage> {
               },
             ),
 
-            /// 👤 PROFILE
             AkunCapsterPage(
               capsterName: widget.userEntity.fullName,
               logoutUseCase: widget.logoutUseCase,

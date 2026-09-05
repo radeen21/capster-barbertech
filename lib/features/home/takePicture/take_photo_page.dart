@@ -59,7 +59,7 @@ class _TakePhotoPageState extends State<TakePhotoPage> {
       if (!mounted) return;
       setState(() {});
     } catch (e) {
-      debugPrint("❌ Kamera gagal: $e");
+      debugPrint("Kamera gagal: $e");
     }
   }
 
@@ -70,9 +70,6 @@ class _TakePhotoPageState extends State<TakePhotoPage> {
     super.dispose();
   }
 
-  // =====================
-  // 📸 CAPTURE PHOTO
-  // =====================
   Future<void> _capturePhoto() async {
     if (cameraController == null || !cameraController!.value.isInitialized) {
       return;
@@ -89,7 +86,7 @@ class _TakePhotoPageState extends State<TakePhotoPage> {
 
       setState(() => _capturedPhoto = file);
     } catch (e) {
-      debugPrint("❌ Capture error: $e");
+      debugPrint("Capture error: $e");
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("Gagal mengambil foto")));
@@ -98,9 +95,6 @@ class _TakePhotoPageState extends State<TakePhotoPage> {
     }
   }
 
-  // =====================
-  // ☁️ UPLOAD & ANALYZE
-  // =====================
   Future<void> _uploadPhoto() async {
   if (_capturedPhoto == null) return;
 
@@ -163,7 +157,7 @@ class _TakePhotoPageState extends State<TakePhotoPage> {
 
     return Stack(
       children: [
-        /// 🔒 LOCK UI SAAT LOADING
+        
         AbsorbPointer(
           absorbing: isUploading || isCapturing,
           child: Scaffold(
@@ -184,14 +178,12 @@ class _TakePhotoPageState extends State<TakePhotoPage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          /// =====================
-                          /// 📷 FRAME KAMERA (FIX SIZE)
-                          /// =====================
+                        
                           Container(
-                            width: 353, // ✅ FIX
-                            height: 353, // ✅ FIX
+                            width: 353, 
+                            height: 353, 
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20), // ✅ FIX
+                              borderRadius: BorderRadius.circular(20), 
                             ),
                             child: Stack(
                               fit: StackFit.expand,

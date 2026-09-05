@@ -28,16 +28,11 @@ class StartServiceRemoteDataSourceImpl implements StartServiceRemoteDataSource {
       "add_ons": addOns,
     };
 
-    print("🚀 START SERVICE BODY = $body");
-
     try {
       final response = await dio.post("/histories/start", data: body);
 
-      print("✅ START SERVICE RESPONSE = ${response.data}");
       return response.data;
     } on DioException catch (e) {
-      print("❌ DIO ERROR STATUS = ${e.response?.statusCode}");
-      print("❌ DIO ERROR DATA = ${e.response?.data}");
 
       String message = "Terjadi kesalahan";
       final statusCode = e.response?.statusCode;

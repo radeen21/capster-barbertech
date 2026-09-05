@@ -49,7 +49,7 @@ class _StartServicePageState extends State<StartServiceDialogPage> {
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
         onTap: () {
-          FocusScope.of(context).unfocus(); // dismiss keyboard
+          FocusScope.of(context).unfocus();
         },
         child: Center(
           child: Padding(
@@ -59,7 +59,7 @@ class _StartServicePageState extends State<StartServiceDialogPage> {
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             child: GestureDetector(
-              onTap: () {}, // supaya tap dialog tidak close
+              onTap: () {},
               child: Container(
                 width: 353,
                 padding: const EdgeInsets.all(20),
@@ -83,7 +83,7 @@ class _StartServicePageState extends State<StartServiceDialogPage> {
 
                     const SizedBox(height: 24),
 
-                    /// 📱 INPUT
+                    ///  INPUT
                     TextField(
                       controller: _phoneController,
                       keyboardType: TextInputType.phone,
@@ -106,7 +106,7 @@ class _StartServicePageState extends State<StartServiceDialogPage> {
 
                     const SizedBox(height: 24),
 
-                    /// ▶ BUTTON
+                    /// BUTTON
                     SizedBox(
                       width: double.infinity,
                       height: 52,

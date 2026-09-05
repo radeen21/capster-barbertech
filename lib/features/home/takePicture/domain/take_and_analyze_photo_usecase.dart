@@ -13,9 +13,6 @@ class TakeAndAnalyzePhotoUseCase {
     Map<String, dynamic>? addOnPayload,
   }) async {
     try {
-      // =========================
-      // 📤 UPLOAD PHOTO
-      // =========================
       final uploadResponse = await repository.uploadPhoto(file);
 
       if (uploadResponse["code"] != 201) {
@@ -27,10 +24,6 @@ class TakeAndAnalyzePhotoUseCase {
       if (photoId == null) {
         throw "ID foto tidak ditemukan";
       }
-
-      // =========================
-      // ➕ ADD-ON FLOW
-      // =========================
       if (serviceType != null && serviceType != "haircut") {
         if (addOnPayload == null) {
           throw "Data add-on tidak ditemukan";
@@ -49,9 +42,6 @@ class TakeAndAnalyzePhotoUseCase {
         };
       }
 
-      // =========================
-      // 🔍 ANALYZE FLOW
-      // =========================
       final analyzeResponse = await repository.analyzePhoto(
         photoId: photoId,
         serviceId: serviceId,
@@ -83,7 +73,6 @@ class TakeAndAnalyzePhotoUseCase {
         "generate": generateResponse,
       };
     } catch (e) {
-      // Kalau sudah string, lempar lagi
       if (e is String) {
         throw e;
       }

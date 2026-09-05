@@ -54,7 +54,7 @@ class _TakeAddOnPicturePageState extends State<TakeAddOnPicturePage> {
     super.dispose();
   }
 
-  // 📸 Ambil foto
+  // Ambil foto
   Future<void> _capturePhoto() async {
     if (_cameraController == null || !_cameraController!.value.isInitialized)
       return;
@@ -63,13 +63,13 @@ class _TakeAddOnPicturePageState extends State<TakeAddOnPicturePage> {
     setState(() => _capturedPhoto = File(picture.path));
   }
 
-  // ☁️ Upload + Generate Add-On
+  // Upload + Generate Add-On
   Future<void> _submitAddOn() async {
   if (_capturedPhoto == null) return;
 
   setState(() => _isLoading = true);
 
-  // 🔥 PAKSA FRAME REPAINT DULU
+  // PAKSA FRAME REPAINT DULU
   await Future.delayed(Duration.zero);
 
   try {
@@ -130,7 +130,7 @@ class _TakeAddOnPicturePageState extends State<TakeAddOnPicturePage> {
           backgroundColor: Colors.black,
           appBar: AppBar(
             backgroundColor: Colors.black,
-            foregroundColor: Colors.white, // 🔥 icon + text jadi putih
+            foregroundColor: Colors.white,
             title: Text(widget.service.name),
           ),
 
@@ -209,9 +209,9 @@ class _TakeAddOnPicturePageState extends State<TakeAddOnPicturePage> {
         if (_isLoading)
           Positioned.fill(
             child: AbsorbPointer(
-              absorbing: true, // 🔥 blok semua klik
+              absorbing: true, 
               child: Container(
-                color: Colors.black.withOpacity(0.4), // 🔥 transparan
+                color: Colors.black.withOpacity(0.4),
                 child: Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

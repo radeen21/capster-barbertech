@@ -19,9 +19,6 @@ class DioClient {
           final prefs = await SharedPreferences.getInstance();
           final token = prefs.getString("session_token");
 
-          debugPrint("➡️ ${options.method} ${options.path}");
-          debugPrint("➡️ TOKEN = $token");
-
           if (token != null && token.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $token";
           }
@@ -31,15 +28,11 @@ class DioClient {
 
         onError: (error, handler) async {
           if (error.response?.statusCode == 401) {
-            debugPrint("❌ 401 DETECTED");
 
             final prefs = await SharedPreferences.getInstance();
             final refreshToken = prefs.getString("refresh_token");
 
-            debugPrint("🔄 REFRESH TOKEN = $refreshToken");
-
             if (refreshToken == null || refreshToken.isEmpty) {
-              debugPrint("❌ NO REFRESH TOKEN");
               return handler.next(error);
             }
 
@@ -56,8 +49,6 @@ class DioClient {
               await prefs.setString("session_token", data["session_token"]);
               await prefs.setString("refresh_token", data["refresh_token"]);
 
-              debugPrint("✅ TOKEN REFRESH SUCCESS");
-
               error.requestOptions.headers["Authorization"] =
                   "Bearer ${data["session_token"]}";
 
@@ -65,7 +56,6 @@ class DioClient {
 
               return handler.resolve(retryResponse);
             } catch (e) {
-              debugPrint("❌ REFRESH FAILED: $e");
               return handler.next(error);
             }
           }
@@ -86,7 +76,7 @@ class DioClient {
         receiveTimeout: const Duration(seconds: 30),
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer public", // ✅ WAJIB ADA
+          "Authorization": "Bearer public", 
         },
       ),
     );
@@ -94,16 +84,12 @@ class DioClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          debugPrint("🟡 PUBLIC REQUEST HEADERS:");
-          debugPrint(options.headers.toString());
           return handler.next(options);
         },
       ),
     );
 
     dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
-
-    debugPrint("🚫 DIO WITHOUT AUTH INITIALIZED");
 
     return dio;
   }

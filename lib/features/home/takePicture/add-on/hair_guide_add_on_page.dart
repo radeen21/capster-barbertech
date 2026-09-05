@@ -31,37 +31,25 @@ class HairGuideAddOnPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final resolvedUrl = _resolveImageUrl();
 
-    debugPrint("🖼️ IMAGE URL: $resolvedUrl");
-
     return Scaffold(
       backgroundColor: Colors.black,
-
-      /// ======================
-      /// APPBAR
-      /// ======================
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
 
-        /// 🔥 ICON BACK PUTIH
         iconTheme: const IconThemeData(color: Colors.white),
 
-        /// 🔥 TITLE TEXT PUTIH
         titleTextStyle: const TextStyle(
           color: Colors.white,
           fontSize: 20,
           fontWeight: FontWeight.w600,
         ),
 
-        /// 🔥 ACTION ICON PUTIH (kalau ada icon kanan)
         actionsIconTheme: const IconThemeData(color: Colors.white),
 
         title: const Text("Hair Guide Add-On"),
       ),
 
-      /// ======================
-      /// BODY
-      /// ======================
       body: SafeArea(
         child: FutureBuilder<String?>(
           future: _getToken(),
@@ -82,7 +70,6 @@ class HairGuideAddOnPage extends StatelessWidget {
                   return const CircularProgressIndicator(color: Colors.orange);
                 },
                 errorBuilder: (_, error, __) {
-                  debugPrint("❌ IMAGE ERROR: $error");
                   return const Text(
                     "Gagal memuat gambar",
                     style: TextStyle(color: Colors.white70),
@@ -94,9 +81,6 @@ class HairGuideAddOnPage extends StatelessWidget {
         ),
       ),
 
-      /// ======================
-      /// 🔥 BUTTON PALING BAWAH
-      /// ======================
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),

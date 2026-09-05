@@ -29,10 +29,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
       print("LOGIN REQUEST BODY = $body");
 
-      // 🔥 TAMBAHAN DEBUG (PENTING)
       const path = "/auth/login";
-      print("🌐 BASE URL = ${dio.options.baseUrl}");
-      print("🌐 FULL URL = ${dio.options.baseUrl}$path");
 
       final response = await dio.post(
         path,
@@ -40,11 +37,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         options: Options(headers: {"Content-Type": "application/json"}),
       );
 
-      print("LOGIN RESPONSE = ${response.data}");
       return response.data;
     } on DioException catch (e) {
-      print("LOGIN ERROR STATUS = ${e.response?.statusCode}");
-      print("LOGIN ERROR BODY = ${e.response?.data}");
       rethrow;
     }
   }
@@ -93,7 +87,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     try {
       return await FirebaseMessaging.instance.getToken();
     } catch (e) {
-      print("❌ Failed get FCM token: $e");
       return null;
     }
   }

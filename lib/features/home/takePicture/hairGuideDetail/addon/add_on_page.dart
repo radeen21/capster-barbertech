@@ -37,9 +37,6 @@ class _AddOnPageState extends State<AddOnPage> {
     _fetchAddOns();
   }
 
-  // =====================
-  // FETCH ADD ONS (SAMA)
-  // =====================
   Future<void> _fetchAddOns() async {
     try {
       final dio = DioClient.create();
@@ -54,9 +51,6 @@ class _AddOnPageState extends State<AddOnPage> {
     }
   }
 
-  // =====================
-  // GENERATE ADD ON (SAMA)
-  // =====================
   Future<void> _submitAddOn() async {
     if (_selectedAddOns.isEmpty) return;
 
@@ -81,9 +75,6 @@ class _AddOnPageState extends State<AddOnPage> {
     }
   }
 
-  // =====================
-  // PAYLOAD MAPPER (SAMA)
-  // =====================
   Map<String, dynamic> _mapAddOnsToPayload() {
     final Map<String, dynamic> payload = {};
 
@@ -103,9 +94,6 @@ class _AddOnPageState extends State<AddOnPage> {
     return payload;
   }
 
-  // =====================
-  // UI
-  // =====================
   @override
   Widget build(BuildContext context) {
     final bool canGenerate = _selectedAddOns.isNotEmpty && !_generating;
@@ -147,11 +135,11 @@ class _AddOnPageState extends State<AddOnPage> {
                                 ) {
                                   if (states.contains(MaterialState.disabled)) {
                                     return Colors
-                                        .grey; // ⛔ abu-abu saat belum pilih
+                                        .grey; 
                                   }
                                   return const Color(
                                     0xFFF6AD03,
-                                  ); // ✅ kuning aktif
+                                  ); 
                                 }),
                             foregroundColor: MaterialStateProperty.all(
                               Colors.black,
@@ -184,9 +172,6 @@ class _AddOnPageState extends State<AddOnPage> {
     );
   }
 
-  // =====================
-  // LIST UI (SAMA)
-  // =====================
   Widget _buildAddOnList() {
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -222,7 +207,7 @@ class _AddOnPageState extends State<AddOnPage> {
           return GestureDetector(
             onTap: () {
               setState(() {
-                // 🔥 SINGLE SELECT ONLY
+               
                 _selectedAddOns.removeWhere((e) => e["type"] == type);
 
                 _selectedAddOns.add({
@@ -230,7 +215,7 @@ class _AddOnPageState extends State<AddOnPage> {
                   "type": type,
                   "name": item["name"],
                   "level": item["level"],
-                  "type_smoothing": item["type"], // 🔥 KUNCI FIX
+                  "type_smoothing": item["type"],
                 });
               });
             },
@@ -256,7 +241,7 @@ class _AddOnPageState extends State<AddOnPage> {
                     ),
                   ),
 
-                  // ✅ CHECK ICON
+                 
                   AnimatedOpacity(
                     opacity: isSelected ? 1 : 0,
                     duration: const Duration(milliseconds: 200),

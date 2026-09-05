@@ -28,7 +28,7 @@ class CapsterHistoryModel {
 
   factory CapsterHistoryModel.fromJson(
     Map<String, dynamic> json,
-    String baseUrl, // 🔥 inject baseUrl dari dio
+    String baseUrl,
   ) {
     final rawUrl = json["haircut_url"];
 
@@ -51,7 +51,7 @@ class CapsterHistoryModel {
       transactionAmount: json["transaction_amount"] ?? 0,
       status: parseStatus(json["status"]),
       haircutUrl: rawUrl,
-      fullHaircutUrl: fullUrl, // 🔥 sudah full URL
+      fullHaircutUrl: fullUrl,
     );
   }
 
@@ -65,7 +65,7 @@ class CapsterHistoryModel {
       lastServedDate: lastServedDate,
       transactionAmount: transactionAmount,
       status: status,
-      fullHaircutUrl: fullHaircutUrl,// 🔥 kirim ke entity
+      fullHaircutUrl: fullHaircutUrl,
     );
   }
 }

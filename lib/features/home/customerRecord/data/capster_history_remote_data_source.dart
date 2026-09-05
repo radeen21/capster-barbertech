@@ -8,18 +8,10 @@ class CapsterHistoryRemoteDataSource {
 
   Future<List<CapsterHistoryModel>> fetchHistories() async {
     try {
-      print("📡 GET /histories/capster");
 
       final response = await dio.get("/histories/capster");
-
-      print("✅ RESPONSE STATUS: ${response.statusCode}");
-      print("🌍 BASE URL: ${dio.options.baseUrl}");
-
       final baseUrl = dio.options.baseUrl;
-
       final items = response.data["data"]["items"] as List;
-
-      print("📦 TOTAL ITEMS: ${items.length}");
 
       for (var e in items) {
         print("---------------");
@@ -35,8 +27,6 @@ class CapsterHistoryRemoteDataSource {
           .map((e) => CapsterHistoryModel.fromJson(e, baseUrl))
           .toList();
     } catch (e, s) {
-      print("❌ ERROR FETCH HISTORIES: $e");
-      print("📛 STACKTRACE: $s");
       rethrow;
     }
   }

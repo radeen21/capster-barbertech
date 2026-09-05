@@ -19,12 +19,9 @@ class ServiceBridgingPage extends StatefulWidget {
 class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
   bool isLoading = true;
 
-  /// ==========================
-  /// STATE
-  /// ==========================
   List<dynamic> colorings = [];
   String? selectedColoringType;
-  Color? selectedColor; // 🔥 ubah jadi nullable (lebih aman)
+  Color? selectedColor; 
 
   List<dynamic> permings = [];
   String? selectedPermingLevel;
@@ -38,38 +35,26 @@ class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
     _fetchAddOns();
   }
 
-  /// ==========================
-  /// 🔥 HELPER FILTER DUPLICATE
-  /// ==========================
   List<dynamic> _uniqueById(List<dynamic> list) {
     final map = <String, dynamic>{};
 
     for (final e in list) {
       final id = e["id"];
       if (id != null) {
-        map[id] = e; // overwrite duplicate otomatis
+        map[id] = e; 
       }
     }
 
     return map.values.toList();
   }
 
-  /// ==========================
-  /// 🔥 FETCH ADDONS (FIXED)
-  /// ==========================
   Future<void> _fetchAddOns() async {
     try {
       final dio = DioClient.create();
 
-      debugPrint("📡 GET /add-ons/${widget.service.id}");
-
       final response = await dio.get("/add-ons/${widget.service.id}");
-
-      debugPrint("📦 FULL RESPONSE: ${response.data}");
-
       final data = response.data["data"] ?? {};
 
-      /// 🔥 SAFE PARSING + FILTER DUPLICATE
       final rawColorings = data["colorings"] ?? [];
       final rawPermings = data["permings"] ?? [];
       final rawSmoothings = data["smoothings"] ?? [];
@@ -81,19 +66,11 @@ class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
         isLoading = false;
       });
 
-      debugPrint("🎨 COLORINGS FINAL: ${colorings.length}");
-      debugPrint("💈 PERMINGS FINAL: ${permings.length}");
-      debugPrint("💆 SMOOTHINGS FINAL: ${smoothings.length}");
     } catch (e, s) {
-      debugPrint("❌ ERROR FETCH ADD-ONS: $e");
-      debugPrint("📛 STACKTRACE: $s");
       setState(() => isLoading = false);
     }
   }
 
-  /// ==========================
-  /// UI
-  /// ==========================
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,9 +93,6 @@ class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// ==========================
-                  /// 💈 PERMING
-                  /// ==========================
                   if (permings.isNotEmpty) ...[
                     _sectionTitle("Pilih Level Perming"),
                     _choiceWrap(
@@ -131,9 +105,6 @@ class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
                     const SizedBox(height: 24),
                   ],
 
-                  /// ==========================
-                  /// 💆 SMOOTHING
-                  /// ==========================
                   if (smoothings.isNotEmpty) ...[
                     _sectionTitle("Pilih Type Smoothing"),
                     _choiceWrap(
@@ -146,9 +117,6 @@ class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
                     const SizedBox(height: 24),
                   ],
 
-                  /// ==========================
-                  /// 🎨 COLORING
-                  /// ==========================
                   if (colorings.isNotEmpty) ...[
                     _sectionTitle("Pilih Type Coloring"),
                     _choiceWrap(
@@ -181,9 +149,7 @@ class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
 
                   const Spacer(),
 
-                  /// ==========================
-                  /// ▶️ CONTINUE
-                  /// ==========================
+              
                   SizedBox(
                     width: double.infinity,
                     height: 52,
@@ -238,9 +204,6 @@ class _ServiceBridgingPageState extends State<ServiceBridgingPage> {
     );
   }
 
-  /// ==========================
-  /// UI HELPERS
-  /// ==========================
   Widget _sectionTitle(String text) {
     return SizedBox(
       height: 40,

@@ -27,9 +27,6 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-/// ===============================
-/// MODEL
-/// ===============================
 class _CapsterAccount {
   final String name;
   final String email;
@@ -47,11 +44,7 @@ class _CapsterAccount {
 class _LoginPageState extends State<LoginPage> {
   _CapsterAccount? _selectedCapster;
 
-  /// ===============================
-  /// 🔥 DATA CAPSTER
-  /// ===============================
   final List<_CapsterAccount> _capsters = const [
-    // ===== BUARAN =====
     _CapsterAccount(
       name: "Sahrul",
       email: "sahrul@mail.com",
@@ -83,7 +76,6 @@ class _LoginPageState extends State<LoginPage> {
       branch: "Buaran",
     ),
 
-    // ===== PONDOK BAMBU =====
     _CapsterAccount(
       name: "Danny",
       email: "danny@mail.com",
@@ -115,17 +107,11 @@ class _LoginPageState extends State<LoginPage> {
     debugPrint("📱 LoginPage OPENED");
   }
 
-  /// ===============================
-  /// LOGIN
-  /// ===============================
   Future<void> _handleLogin() async {
     if (_selectedCapster == null) return;
 
     final email = _selectedCapster!.email;
     final password = _selectedCapster!.password;
-
-    debugPrint("🔐 LOGIN AS = ${_selectedCapster!.name}");
-    debugPrint("🏪 BRANCH = ${_selectedCapster!.branch}");
 
     _showLoading(context);
 
@@ -165,9 +151,6 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  /// ===============================
-  /// UI
-  /// ===============================
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,9 +168,6 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 40),
 
-              /// ===============================
-              /// DROPDOWN CAPSTER
-              /// ===============================
               DropdownButtonFormField<_CapsterAccount>(
                 value: _selectedCapster,
                 isExpanded: true,
@@ -234,10 +214,6 @@ class _LoginPageState extends State<LoginPage> {
                 Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
 
               const SizedBox(height: 20),
-
-              /// ===============================
-              /// LOGIN BUTTON
-              /// ===============================
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -270,9 +246,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-/// ===============================
-/// LOADING
-/// ===============================
 void _showLoading(BuildContext context) {
   showDialog(
     context: context,
@@ -289,7 +262,6 @@ void _hideLoading(BuildContext context) {
 }
 
 Future<void> forcePortrait() async {
-  debugPrint("🔄 ORIENTATION → PORTRAIT");
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeRight,
@@ -297,8 +269,6 @@ Future<void> forcePortrait() async {
 }
 
 Future<void> forceLandscape() async {
-  debugPrint("🔄 ORIENTATION → LANDSCAPE");
-
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeRight,
   ]);

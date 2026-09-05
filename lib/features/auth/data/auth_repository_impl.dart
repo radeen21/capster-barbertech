@@ -14,9 +14,6 @@ class AuthRepositoryImpl implements AuthRepository {
  @override
   Future<UserEntity> login(String email, String password) async {
     final response = await remote.login(email, password);
-    debugPrint("📡 LOGIN RESPONSE RAW = ${response}");
-
-    // ✅ KIRIM SELURUH RESPONSE KE MODEL
     return UserModel.fromLoginResponse(response);
   }
 

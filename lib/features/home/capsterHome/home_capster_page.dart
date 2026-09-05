@@ -59,7 +59,6 @@ class _HomeCapsterPageState extends State<HomeCapsterPage> {
             children: [
               const SizedBox(height: 10),
 
-              /// LOGO + NOTIF
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -107,9 +106,6 @@ class _HomeCapsterPageState extends State<HomeCapsterPage> {
     );
   }
 
-  // ============================
-  // TARGET SECTION
-  // ============================
   Widget _targetSection(int percent) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -190,9 +186,6 @@ class _HomeCapsterPageState extends State<HomeCapsterPage> {
     );
   }
 
-  // ============================
-  // SERVICE SECTION
-  // ============================
   Widget _serviceSection() {
     return GestureDetector(
       onTap: () {
@@ -256,9 +249,6 @@ class _HomeCapsterPageState extends State<HomeCapsterPage> {
     );
   }
 
-  // ============================
-  // LATEST ACTIVITY
-  // ============================
   Widget _latestActivitySection() {
     return AnimatedBuilder(
       animation: _historyController,

@@ -21,10 +21,6 @@ class StartHaircutDialog extends StatefulWidget {
 class _StartHaircutDialogState extends State<StartHaircutDialog> {
   final TextEditingController _phoneController = TextEditingController();
   bool _loading = false;
-
-  // =====================
-  // NORMALIZE PHONE
-  // =====================
   String _normalizePhone(String phone) {
     phone = phone.trim();
 
@@ -37,9 +33,7 @@ class _StartHaircutDialogState extends State<StartHaircutDialog> {
     return phone;
   }
 
-  // =====================
-  // SUBMIT
-  // =====================
+
   Future<void> _submit() async {
     final rawPhone = _phoneController.text.trim();
 
@@ -52,7 +46,7 @@ class _StartHaircutDialogState extends State<StartHaircutDialog> {
     }
 
     if (widget.serviceId.isEmpty) {
-      debugPrint("❌ serviceId KOSONG");
+     
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Service tidak valid")),
       );
@@ -60,7 +54,7 @@ class _StartHaircutDialogState extends State<StartHaircutDialog> {
     }
 
     if (widget.haircutName.isEmpty || widget.haircutName == "N/A") {
-      debugPrint("❌ haircutName INVALID: ${widget.haircutName}");
+      
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Model rambut belum dipilih")),
       );
@@ -68,15 +62,6 @@ class _StartHaircutDialogState extends State<StartHaircutDialog> {
     }
 
     final phoneNumber = _normalizePhone(rawPhone);
-
-    // LOG PAYLOAD (INI PENTING)
-    debugPrint("📤 START HAIRCUT PAYLOAD:");
-    debugPrint({
-      "phone_number": phoneNumber,
-      "service_id": widget.serviceId,
-      "haircut_name": widget.haircutName,
-      "add_ons": widget.addOns,
-    }.toString());
 
     setState(() => _loading = true);
 
@@ -90,7 +75,6 @@ class _StartHaircutDialogState extends State<StartHaircutDialog> {
         addOns: widget.addOns,
       );
 
-      debugPrint("✅ START HAIRCUT RESPONSE: $response");
 
       if (!mounted) return;
 
@@ -100,7 +84,6 @@ class _StartHaircutDialogState extends State<StartHaircutDialog> {
         SnackBar(content: Text(response["message"] ?? "Berhasil")),
       );
     } catch (e) {
-      debugPrint("❌ START HAIRCUT ERROR: $e");
 
       if (!mounted) return;
 
@@ -112,9 +95,6 @@ class _StartHaircutDialogState extends State<StartHaircutDialog> {
     }
   }
 
-  // =====================
-  // UI (TIDAK DIUBAH)
-  // =====================
   @override
   Widget build(BuildContext context) {
     return Dialog(

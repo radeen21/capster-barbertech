@@ -33,7 +33,7 @@ class HistoryItem extends StatelessWidget {
       ),
       child: Column(
         children: [
-          /// 🗓️ DATE + POINT BADGE
+          /// DATE + POINT BADGE
           Row(
             children: [
               Expanded(
@@ -65,7 +65,7 @@ class HistoryItem extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          /// 👤 CAPSTER
+          ///  CAPSTER
           _infoRow(
             label: "Nama Capster",
             value: capsterLeft,
@@ -73,7 +73,7 @@ class HistoryItem extends StatelessWidget {
 
           const SizedBox(height: 8),
 
-          /// ✂️ SERVICE
+          /// SERVICE
           _infoRow(
             label: "Jenis Services",
             value: serviceLeft,
@@ -84,7 +84,7 @@ class HistoryItem extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          /// 🖼️ LAST PHOTO
+          /// LAST PHOTO
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -108,7 +108,7 @@ class HistoryItem extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          /// 💰 TOTAL COST
+          /// TOTAL COST
           Row(
             children: [
               const Text(
@@ -133,10 +133,6 @@ class HistoryItem extends StatelessWidget {
       ),
     );
   }
-
-  // =============================
-  // SMALL COMPONENTS
-  // =============================
 
   Widget _divider() {
     return Container(

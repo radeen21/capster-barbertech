@@ -62,9 +62,7 @@ class _CapsterFinishServicePageState extends State<CapsterFinishServicePage> {
     super.dispose();
   }
 
-  // =====================
-  // 📸 CAPTURE PHOTO
-  // =====================
+
   Future<void> _capturePhoto() async {
     if (cameraController == null || !cameraController!.value.isInitialized)
       return;
@@ -84,23 +82,16 @@ class _CapsterFinishServicePageState extends State<CapsterFinishServicePage> {
     }
   }
 
-  // =====================
-  // ☁️ SUBMIT FINISH SERVICE
-  // =====================
   Future<void> _submit() async {
     if (_capturedPhoto == null) return;
 
     setState(() => isUploading = true);
 
     try {
-      // 1️⃣ upload foto
       final uploadUseCase = locator<UploadPhotoUseCase>();
 
       final photoUrl = await uploadUseCase.execute(_capturedPhoto!);
 
-      debugPrint("📸 uploaded photo url = $photoUrl");
-
-      // 2️⃣ finish service
       await _finishController.finish(
         historyId: widget.historyId,
         photoUrl: photoUrl,
@@ -108,12 +99,8 @@ class _CapsterFinishServicePageState extends State<CapsterFinishServicePage> {
 
       if (!mounted) return;
       Navigator.pop(context, true);
-      // 3️⃣ balik ke home capster
-      // Navigator.of(context).popUntil((route) => route.isFirst);
       const SnackBar(content: Text("sukses menyelesaikan service"));
     } catch (e, s) {
-      debugPrint("❌ Finish service error: $e");
-      debugPrintStack(stackTrace: s);
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Gagal menyelesaikan service")),
@@ -233,9 +220,6 @@ class _CapsterFinishServicePageState extends State<CapsterFinishServicePage> {
     );
   }
 
-  // =====================
-  // UI HELPERS
-  // =====================
 
   Widget _loadingOverlay(String text) {
     return Container(
@@ -250,7 +234,7 @@ class _CapsterFinishServicePageState extends State<CapsterFinishServicePage> {
               text,
               style: const TextStyle(
                 color: Colors.white70,
-                fontSize: 14, // 🔥 atur di sini
+                fontSize: 14,
               ),
             ),
           ],

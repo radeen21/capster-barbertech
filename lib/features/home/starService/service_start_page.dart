@@ -57,10 +57,6 @@ class ServiceStartPage extends StatelessWidget {
             _infoRow("Harga", "Rp ${service.price}"),
 
             const Spacer(),
-
-            /// =================================
-            /// BUTTON LANJUT HAIRGUIDE / FOTO
-            /// =================================
             if (service.isAllowPhoto) ...[
               SizedBox(
                 width: double.infinity,
@@ -113,9 +109,6 @@ class ServiceStartPage extends StatelessWidget {
               const SizedBox(height: 12),
             ],
 
-            /// =================================
-            /// BUTTON MULAI SERVICE (TETAP ADA)
-            /// =================================
             SizedBox(
               width: double.infinity,
               height: 52,
@@ -174,59 +167,6 @@ class ServiceStartPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 12),
-
-            /// BUTTON MULAI
-            // SizedBox(
-            //   width: double.infinity,
-            //   height: 52,
-            //   child: ElevatedButton(
-            //     style: ElevatedButton.styleFrom(
-            //       backgroundColor: const Color(0xFFF6AD03),
-            //       foregroundColor: Colors.black,
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.circular(12),
-            //       ),
-            //     ),
-            //     onPressed: () {
-            //       final controller = locator<StartServiceController>();
-
-            //       StartServiceDialog.show(
-            //         context,
-            //         onSubmit: (phone) async {
-            //           final success = await controller.startService(
-            //             phoneNumber: phone,
-            //             serviceId: service.id,
-            //             haircutName: service.name,
-            //             addOns: const [], // isi dari selection kalau ada
-            //           );
-
-            //           if (success) {
-            //             ScaffoldMessenger.of(context).showSnackBar(
-            //               const SnackBar(
-            //                 content: Text("Service berhasil dimulai"),
-            //               ),
-            //             );
-
-            //             Navigator.pop(context);
-            //           } else {
-            //             ScaffoldMessenger.of(context).showSnackBar(
-            //               SnackBar(
-            //                 content: Text(
-            //                   controller.error ?? "Terjadi kesalahan",
-            //                 ),
-            //               ),
-            //             );
-            //           }
-            //         },
-            //       );
-            //     },
-
-            //     child: const Text(
-            //       "Mulai Service",
-            //       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

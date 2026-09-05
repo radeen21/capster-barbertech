@@ -17,7 +17,7 @@ class CapsterHistoryController extends ChangeNotifier {
     try {
       histories = await useCase.execute();
     } catch (e) {
-      debugPrint("❌ CAPSTER HISTORY ERROR: $e");
+      debugPrint("CAPSTER HISTORY ERROR: $e");
     }
 
     isLoading = false;

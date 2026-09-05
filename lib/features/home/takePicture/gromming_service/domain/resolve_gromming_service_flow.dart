@@ -2,7 +2,6 @@ import 'package:capster_barbertech/features/home/takePicture/gromming_service/do
 import 'package:capster_barbertech/features/home/takePicture/gromming_service/domain/gromming_service_flow.dart';
 
 
-/// ⭐ NEW USECASE
 class ResolveServiceFlowUseCase {
   ServiceFlow call(GrommingServiceEntity service) {
     if (!service.isAllowPhoto) {

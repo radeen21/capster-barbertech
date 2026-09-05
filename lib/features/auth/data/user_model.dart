@@ -24,8 +24,6 @@ class UserModel extends UserEntity {
     if (user == null) {
       throw Exception("Login response invalid: user is null");
     }
-
-    // ⭐ capster boleh null (biar aman kalau role lain login)
     final capster = data["capster"];
 
     return UserModel(
@@ -40,7 +38,6 @@ class UserModel extends UserEntity {
 
       point: user["point"] ?? 0,
 
-      // ⭐ INI YANG KAMU BUTUH
       target: capster?["target"] ?? 0,
       achievement: capster?["achievement"] ?? 0,
     );

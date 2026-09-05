@@ -5,7 +5,6 @@ class UserEntity {
   final String role;
   final String fullName;
 
-  // 🔐 AUTH
   final String sessionToken;
   final String refreshToken;
   final DateTime sessionExpiresAt;
